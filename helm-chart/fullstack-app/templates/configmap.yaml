@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-backend-config
+  namespace: {{ .Values.namespace }}
+data:
+  DB_HOST: {{ .Release.Name }}-postgres
+  DB_PORT: "5432"
+  DB_USER: {{ .Values.postgres.user | quote }}
+  DB_NAME: {{ .Values.postgres.database | quote }}

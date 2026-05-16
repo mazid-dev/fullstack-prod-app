@@ -1,0 +1,39 @@
+namespace: fullstack
+
+frontend:
+  replicaCount: 2
+  image:
+    repository: mazidhossain/frontend
+    tag: latest
+  service:
+    port: 80
+
+backend:
+  replicaCount: 2
+  image:
+    repository: mazidhossain/backend
+    tag: latest
+  service:
+    port: 80
+    targetPort: 5000
+
+postgres:
+  image: postgres:15
+  storageSize: 5Gi
+  database: taskdb
+  user: taskuser
+  password: "yourStrongPassword"
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+ingress:
+  enabled: true
+  host: tasks.yourdomain.com
+
+configmap: {}
+secret: {}
